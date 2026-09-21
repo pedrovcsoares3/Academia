@@ -107,7 +107,7 @@
 <body class="font-montserrat relative">
 
     <header class="fixed top-0 w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
             <!-- Logo -->
             <a href="#" class="flex items-center gap-2 group">
@@ -135,14 +135,6 @@
             <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </button>
-        </div>
-
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 backdrop-blur-md border-b border-white/10 px-6 py-6 flex-col gap-6 absolute w-full left-0 top-full shadow-2xl">
-            <a href="#beneficios" class="mobile-link font-poppins text-sm font-semibold tracking-wider uppercase text-gray-400 hover:text-neon transition-colors block">Benefícios</a>
-            <a href="#modalidades" class="mobile-link font-poppins text-sm font-semibold tracking-wider uppercase text-gray-400 hover:text-neon transition-colors block">Modalidades</a>
-            <a href="#planos" class="mobile-link font-poppins text-sm font-semibold tracking-wider uppercase text-gray-400 hover:text-neon transition-colors block">Planos</a>
-            <a href="#planos" class="mobile-link bg-neon text-dark font-poppins font-bold text-sm uppercase tracking-wider px-6 py-3 rounded hover:bg-white transition-colors duration-300 text-center block mt-2">Matricule-se</a>
         </div>
     </header>
 
@@ -413,6 +405,21 @@
             </div>
         </div>
 
+        <!-- Mapa de Localização -->
+        <div class="max-w-7xl mx-auto px-6 mb-12 relative z-10 reveal">
+            <div class="w-full h-[400px] rounded-xl overflow-hidden border border-white/5">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Centro,%20Cabo%20Frio,%20RJ&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto px-6 pt-6 border-t border-white/10 text-center text-gray-500 text-xs font-light relative z-10">
             &copy; 2026 Vitality Fitness. Todos os direitos reservados.
         </div>
@@ -435,34 +442,6 @@
                     navbar.classList.remove('py-2', 'shadow-lg');
                     navbar.classList.add('h-20');
                 }
-            });
-
-            // Mobile Menu Toggle
-            const mobileBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileIcon = mobileBtn.querySelector('i');
-
-            mobileBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('flex');
-                
-                if (mobileMenu.classList.contains('flex')) {
-                    mobileIcon.classList.remove('fa-bars');
-                    mobileIcon.classList.add('fa-times');
-                } else {
-                    mobileIcon.classList.remove('fa-times');
-                    mobileIcon.classList.add('fa-bars');
-                }
-            });
-
-            // Close mobile menu when a link is clicked
-            document.querySelectorAll('.mobile-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
-                    mobileIcon.classList.remove('fa-times');
-                    mobileIcon.classList.add('fa-bars');
-                });
             });
 
             // Intersection Observer for Reveal Animations (Fade-in on scroll)
