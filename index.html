@@ -106,7 +106,7 @@
 </head>
 <body class="font-montserrat relative">
 
-    <header class="fixed top-0 w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+    <header class="fixed top-0 w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10 transition-all duration-300 relative" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
             <!-- Logo -->
@@ -132,9 +132,19 @@
             </a>
 
             <!-- Mobile Menu Icon -->
-            <button class="md:hidden text-white text-2xl" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
+            <button class="md:hidden text-white text-2xl focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars transition-all duration-300"></i>
             </button>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-dark/95 backdrop-blur-lg border-b border-white/10 flex flex-col items-center py-8 space-y-6 shadow-2xl transition-all duration-300">
+            <a href="#beneficios" class="mobile-link font-poppins text-lg font-semibold tracking-wider uppercase text-gray-300 hover:text-neon transition-colors">Benefícios</a>
+            <a href="#modalidades" class="mobile-link font-poppins text-lg font-semibold tracking-wider uppercase text-gray-300 hover:text-neon transition-colors">Modalidades</a>
+            <a href="#planos" class="mobile-link font-poppins text-lg font-semibold tracking-wider uppercase text-gray-300 hover:text-neon transition-colors">Planos</a>
+            <a href="#planos" class="mobile-link mt-4 bg-neon text-dark font-poppins font-bold text-sm uppercase tracking-wider px-8 py-3 rounded hover:bg-white transition-colors duration-300 shadow-neon">
+                Matricule-se
+            </a>
         </div>
     </header>
 
@@ -473,6 +483,33 @@
                     }
                 });
             }, 100);
+
+            // Lógica do Menu Mobile
+            const btnMobile = document.getElementById('mobile-menu-btn');
+            const menuMobile = document.getElementById('mobile-menu');
+            const linksMobile = document.querySelectorAll('.mobile-link');
+
+            btnMobile.addEventListener('click', () => {
+                menuMobile.classList.toggle('hidden');
+                const icon = btnMobile.querySelector('i');
+                if (menuMobile.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+
+            // Fechar o menu mobile ao clicar em um link
+            linksMobile.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuMobile.classList.add('hidden');
+                    const icon = btnMobile.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
         });
 
         // Form submission handler to avoid using alert()
